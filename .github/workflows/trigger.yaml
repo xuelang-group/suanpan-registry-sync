@@ -20,7 +20,7 @@ jobs:
       - env:
           REGISTRY: ${{ github.event.client_payload.registry }}
           NAMESPACE: ${{ github.event.client_payload.namespace }}
-          NAME: ${{ github.event.client_payload.name }}
+          NAMES: ${{ github.event.client_payload.names }}
           TOREGISTRY: "${{ secrets.ACR_SERVER }}"
         run: 
-          bash ./sync.sh $REGISTRY $NAMESPACE $NAME $TOREGISTRY
+          bash ./sync.sh $REGISTRY $NAMESPACE $NAMES $TOREGISTRY
