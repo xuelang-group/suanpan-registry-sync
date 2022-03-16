@@ -5,7 +5,7 @@ on:
     types: [sync_image]
 
 jobs:
-  deploy-cloud:
+  sync_image:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
