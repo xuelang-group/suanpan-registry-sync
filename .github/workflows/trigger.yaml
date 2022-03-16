@@ -11,7 +11,7 @@ jobs:
     - name: Login to Aliyun Container Registry (ACR)
       uses: aliyun/acr-login@v1
       with:
-        login-server: "${{ secrets.ACR_SERVER }}"
+        login-server: "https://${{ secrets.ACR_SERVER }}"
         username: "${{ secrets.ACR_USERNAME }}"
         password: "${{ secrets.ACR_PASSWORD }}"
 
