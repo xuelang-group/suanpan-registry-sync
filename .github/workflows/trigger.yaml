@@ -8,6 +8,7 @@ jobs:
   deploy-cloud:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
 
       - name: Login to Aliyun Container Registry (ACR)
         uses: aliyun/acr-login@v1
