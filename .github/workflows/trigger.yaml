@@ -1,0 +1,23 @@
+name: Trigger Sync
+
+on:
+  repository_dispatch:
+    types: [sync_image]
+
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+
+    - name: Login to Aliyun Container Registry (ACR)
+      uses: aliyun/acr-login@v1
+      with:
+        login-server: "${{ secrets.ACR_SERVER }}"
+        username: "${{ secrets.ACR_USERNAME }}"
+        password: "${{ secrets.ACR_PASSWORD }}"
+
+    - env:
+        REGISTRY: ${{ github.event.image_info.registry }}
+        NAME: ${{ github.event.image_info.name }}
+        TOREGISTRY: "${{ secrets.ACR_SERVER }}"
+      run: 
+        bash ./sync.sh $REGISTRY $NAME $TOREGISTRY
