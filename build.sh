@@ -12,6 +12,6 @@ curl --location --request POST 'https://api.github.com/repos/xuelang-group/suanp
     "client_payload": {
         "registry": "registry.cn-shanghai.aliyuncs.com",
         "namespace": "shuzhi-amd64",
-        "names": '$IMAGES'
+        "names": "'$IMAGES'"
     }
 }'
