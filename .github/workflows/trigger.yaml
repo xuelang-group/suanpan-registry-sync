@@ -5,20 +5,21 @@ on:
     types: [sync_image]
 
 jobs:
-  runs-on: ubuntu-latest
-  steps:
+  deploy-cloud:
+    runs-on: ubuntu-latest
+    steps:
 
-    - name: Login to Aliyun Container Registry (ACR)
-      uses: aliyun/acr-login@v1
-      with:
-        login-server: "https://${{ secrets.ACR_SERVER }}"
-        username: "${{ secrets.ACR_USERNAME }}"
-        password: "${{ secrets.ACR_PASSWORD }}"
+      - name: Login to Aliyun Container Registry (ACR)
+        uses: aliyun/acr-login@v1
+        with:
+          login-server: "https://${{ secrets.ACR_SERVER }}"
+          username: "${{ secrets.ACR_USERNAME }}"
+          password: "${{ secrets.ACR_PASSWORD }}"
 
-    - env:
-        REGISTRY: ${{ github.event.client_payload.registry }}
-        NAMESPACE: ${{ github.event.client_payload.namespace }}
-        NAME: ${{ github.event.client_payload.name }}
-        TOREGISTRY: "${{ secrets.ACR_SERVER }}"
-      run: 
-        bash ./sync.sh $REGISTRY $NAMESPACE $NAME $TOREGISTRY
+      - env:
+          REGISTRY: ${{ github.event.client_payload.registry }}
+          NAMESPACE: ${{ github.event.client_payload.namespace }}
+          NAME: ${{ github.event.client_payload.name }}
+          TOREGISTRY: "${{ secrets.ACR_SERVER }}"
+        run: 
+          bash ./sync.sh $REGISTRY $NAMESPACE $NAME $TOREGISTRY
