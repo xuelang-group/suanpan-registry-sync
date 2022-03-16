@@ -1,12 +1,13 @@
 #!/bin/bash
 
 REGISTRY=$1
-NAME=$2
-TOREGISTRY=$3
+NAMESPACE=$2
+NAME=$3
+TOREGISTRY=$4
 
-echo "start to pull image: $REGISTRY/$NAME"
-docker pull "$REGISTRY/$NAME"
-echo "tag image to: $TOREGISTRY/$NAME"
-docker tag "$REGISTRY/$NAME" "$TOREGISTRY/$NAME"
-echo "start to push image: $TOREGISTRY/$NAME"
-docker push "$TOREGISTRY/$NAME"
+echo "start to pull image: $REGISTRY/$NAMESPACE/$NAME"
+docker pull "$REGISTRY/$NAMESPACE/$NAME"
+echo "tag image to: $TOREGISTRY/$NAMESPACE/$NAME"
+docker tag "$REGISTRY/$NAMESPACE/$NAME" "$TOREGISTRY/$NAMESPACE/$NAME"
+echo "start to push image: $TOREGISTRY/$NAMESPACE/$NAME"
+docker push "$TOREGISTRY/$NAMESPACE/$NAME"

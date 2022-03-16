@@ -17,7 +17,8 @@ jobs:
 
     - env:
         REGISTRY: ${{ github.event.image_info.registry }}
+        NAMESPACE: ${{ github.event.image_info.namespace }}
         NAME: ${{ github.event.image_info.name }}
         TOREGISTRY: "${{ secrets.ACR_SERVER }}"
       run: 
-        bash ./sync.sh $REGISTRY $NAME $TOREGISTRY
+        bash ./sync.sh $REGISTRY $NAMESPACE $NAME $TOREGISTRY
